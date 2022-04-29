@@ -16,4 +16,8 @@ jobs:
           sudo apt install openvpn
           echo $OPENVPN_CLIENT_CONFIG |base64 --decode > vlan.conf
           sudo openvpn --daemon --config vlan.conf
+      
+      - name: Run Android Container
+        run: |
+          docker run --privileged -d -p 6080:6080 -p 5554:5554 -p 5555:5555 -p 4723:4723 --name android-container-appium budtmo/docker-android-x86-11.0:latest
           
