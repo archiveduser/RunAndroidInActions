@@ -1,0 +1,19 @@
+name: Run Android
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Setup Openvpn
+        env:
+          OPENVPN_CLIENT_CONFIG: ${{ secrets.OPENVPN_CLIENT_CONFIG }}
+        run: |
+          sudo apt update
+          sudo apt install openvpn
+          echo $OPENVPN_CLIENT_CONFIG > vlan.conf
+          sudo openvpn --config vlan.conf
+          
