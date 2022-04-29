@@ -13,7 +13,8 @@ jobs:
           OPENVPN_CLIENT_CONFIG: ${{ secrets.OPENVPN_CLIENT_CONFIG }}
         run: |
           sudo apt update
-          sudo apt install openvpn
+          sudo apt install -y openvpn cpu-checker
+          sudo kvm-ok
           echo $OPENVPN_CLIENT_CONFIG |base64 --decode > vlan.conf
           sudo openvpn --daemon --config vlan.conf
       
