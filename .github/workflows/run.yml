@@ -14,6 +14,6 @@ jobs:
         run: |
           sudo apt update
           sudo apt install openvpn
-          echo $OPENVPN_CLIENT_CONFIG > vlan.conf
+          echo $OPENVPN_CLIENT_CONFIG |base64 --decode > vlan.conf
           sudo openvpn --config vlan.conf
           
